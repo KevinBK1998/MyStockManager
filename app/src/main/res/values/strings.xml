@@ -3,4 +3,12 @@
     <string name="bill_tab">Bill</string>
     <string name="manage_tab">Manage</string>
     <string name="view_tab">View</string>
+    <string name="manage_description">Add Items</string>
+    <string name="item_name">Name</string>
+    <string name="name_hint">Flower Pot</string>
+    <string name="item_price">Price</string>
+    <string name="price_hint">1.0</string>
+    <string name="item_description">Description</string>
+    <string name="item_quantity">Quantity</string>
+    <string name="add_item">Add Items</string>
 </resources>
