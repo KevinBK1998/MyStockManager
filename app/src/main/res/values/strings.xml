@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">MyStockManager</string>
+    <string name="bill_tab">Bill</string>
+    <string name="manage_tab">Manage</string>
+    <string name="view_tab">View</string>
+</resources>
