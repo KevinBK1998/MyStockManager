@@ -7,8 +7,8 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.kbkapps.mystockmanager.R
 
 private val TAB_TITLES = arrayOf(
-    R.string.bill_tab,
     R.string.manage_tab,
+    R.string.bill_tab,
     R.string.view_tab
 )
 
@@ -22,8 +22,8 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
     override fun getItem(position: Int): Fragment {
         // getItem is called to instantiate the fragment for the given page.
         return when (position) {
-            context.resources.getInteger(R.integer.bill_tab) -> BillingFragment.newInstance()
-            context.resources.getInteger(R.integer.stock_tab) -> ManageStockFragment.newInstance()
+            0 -> ManageStockFragment.newInstance()
+            1 -> BillingFragment.newInstance()
             else -> ViewStocksFragment.newInstance()
         }
     }
