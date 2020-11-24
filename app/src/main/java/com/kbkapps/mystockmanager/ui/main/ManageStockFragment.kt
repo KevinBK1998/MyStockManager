@@ -1,6 +1,7 @@
 package com.kbkapps.mystockmanager.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,17 +36,28 @@ class ManageStockFragment : Fragment() {
         itemDescription = root.findViewById(R.id.itemDescription)
         itemQuantity = root.findViewById(R.id.itemQuantity)
         val btn = root.findViewById<Button>(R.id.addButton)
-        val databaseHandler=DatabaseHandler(context,null,null,1)
-        btn.setOnClickListener { view ->
-            val item= Item(
-                itemName.text.toString(),
-                itemDescription.text.toString(),
-                itemPrice.text.toString().toFloat(),
-                itemQuantity.text.toString().toInt(),
-            )
-            databaseHandler.addItems(item)
-            Snackbar.make(view, "${itemName.text} was added", Snackbar.LENGTH_LONG)
-                .setAction("Undo", null).show()
+        val databaseHandler=DatabaseHandler(context,null)
+        Log.d("Manage", "test:$context")
+        btn.setOnClickListener {
+            try {
+                val quantity =
+                    if (itemQuantity.text.isNotEmpty()) itemQuantity.text.toString().toInt() else 1
+                val price =
+                    if (itemPrice.text.isNotEmpty()) itemPrice.text.toString().toFloat() else 1f
+                val item = Item(
+                    itemName.text.toString(),
+                    itemDescription.text.toString(),
+                    quantity,
+                    price
+                )
+                databaseHandler.addItems(item)
+                Snackbar.make(it, "${itemName.text} was added", Snackbar.LENGTH_LONG)
+                    .setAction("Undo", null).show()
+                Log.i("TEST", databaseHandler.all().toString())
+            } catch (e: Exception) {
+                Snackbar.make(it, "Error occurred $e", Snackbar.LENGTH_LONG)
+                    .setAction("Undo", null).show()
+            }
         }
         return root
     }
